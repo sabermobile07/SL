@@ -1,0 +1,133 @@
+{
+    "asset" : {
+        "version" : "2.0",
+        "generator" : "Khronos glTF Blender I/O v1.2.20"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "nodes" : [
+                0
+            ],
+            "name" : "Scene"
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Plane"
+        }
+    ],
+    "materials" : [
+        {
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "texCoord" : 0,
+                    "index" : 0
+                }
+            },
+            "name" : "Material.001"
+        }
+    ],
+    "meshes" : [
+        {
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "TEXCOORD_0" : 0,
+                        "POSITION" : 1,
+                        "NORMAL" : 2
+                    },
+                    "material" : 0,
+                    "indices" : 3
+                }
+            ],
+            "name" : "Plane.001"
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0,
+            "sampler" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/jpeg",
+            "uri" : "Caisse2_jpg.jpg",
+            "name" : "Caisse2.jpg"
+        }
+    ],
+    "accessors" : [
+        {
+            "type" : "VEC2",
+            "componentType" : 5126,
+            "bufferView" : 0,
+            "count" : 4
+        },
+        {
+            "componentType" : 5126,
+            "bufferView" : 1,
+            "count" : 4,
+            "min" : [
+                -0.5,
+                0,
+                -0.5
+            ],
+            "type" : "VEC3",
+            "max" : [
+                0.5,
+                0,
+                0.5
+            ]
+        },
+        {
+            "type" : "VEC3",
+            "componentType" : 5126,
+            "bufferView" : 2,
+            "count" : 4
+        },
+        {
+            "type" : "SCALAR",
+            "componentType" : 5123,
+            "bufferView" : 3,
+            "count" : 6
+        }
+    ],
+    "bufferViews" : [
+        {
+            "byteOffset" : 0,
+            "buffer" : 0,
+            "byteLength" : 32
+        },
+        {
+            "byteOffset" : 32,
+            "buffer" : 0,
+            "byteLength" : 48
+        },
+        {
+            "byteOffset" : 80,
+            "buffer" : 0,
+            "byteLength" : 48
+        },
+        {
+            "byteOffset" : 128,
+            "buffer" : 0,
+            "byteLength" : 12
+        }
+    ],
+    "samplers" : [
+        {
+            "wrapT" : 10497,
+            "magFilter" : 9729,
+            "wrapS" : 10497,
+            "minFilter" : 9986
+        }
+    ],
+    "buffers" : [
+        {
+            "uri" : "model.bin",
+            "byteLength" : 140
+        }
+    ]
+}
