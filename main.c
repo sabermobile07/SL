@@ -15,24 +15,17 @@ int main(int argc, char** argv)
     {
         SL_quit();
     }
-    slShader* sh2D = slShader_init("texture2D");
-    slShader* sh3D = slShader_init("lightD");
+    
     slFont* font = slFont_init("arial.ttf");
     slScene* scene = slScene_init(win, -1.f, -1.f, 2.f, 2.f);
     slInput* in = slInput_init();
     
     Player* player = Player_init();
-    Enemy* enemy = Enemy_init();
+    EnemyV* enemyV = EnemyV_init();
     
     int now = SDL_GetTicks();
     int prev = now;
     float dt;
-    
-    slObj* a = slObj_init("cube", (vec3){0.f, -1.f, 0.f}, (vec3){0.2f, 0.2f, 0.f});
-    slObj* b = slObj_init("cube", (vec3){0.f, 1.f, 0.f}, (vec3){2.f, 0.1f, 0.f});
-    slVector* v = slVector_init();
-    slVector_push(v, a);
-    slVector_push(v, b);
     
     while(slWindow_getStatus(win) == TRUE)
     {
@@ -52,33 +45,28 @@ int main(int argc, char** argv)
         }
         
         Player_update(player, dt);
+        EnemyV_update(enemyV, dt);
         
-        if(!slObj_testCollision(a, b))
+        if(Player_doCollisionV(player, enemyV))
         {
-            slObj_move(a, (vec3){0.f, 0.01f, 0.f});
+            slWindow_setStatus(win, FALSE);
         }
         
         Player_draw(player, scene);
-        Enemy_draw(enemy, scene);
+        EnemyV_draw(enemyV, scene, font, win);
         
-        //slScene_drawV(scene, v, sh2D, false);
-        
-        slFont_draw(font, win, "text printed", -1.f, 0.5f);
+        slFont_draw(font, win, "text printed", 0.f, 0.f);
         slWindow_draw(win);
     }
     
-    slVector_free(&v);
-    Enemy_free(&enemy);
+    EnemyV_free(&enemyV);
     Player_free(&player);
     slScene_free(&scene);
     slFont_free(&font);
-    slShader_free(&sh3D);
-    slShader_free(&sh2D);
     slWindow_free(&win);
     SL_quit();
     return 0;
 }
-
 
 
 

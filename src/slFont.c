@@ -140,7 +140,7 @@ slFont* slFont_init(char* name)
 	glGenBuffers(1, &me->vbo);
 
 	/* Create texture atlasses for several font sizes */
-	slAtlas_init(&me->a36, me->shader, me->face, 24);
+	slAtlas_init(&me->a36, me->shader, me->face, 48);
 
 	return me;
 }

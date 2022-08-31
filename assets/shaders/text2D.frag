@@ -15,9 +15,9 @@ uniform vec4 color;
 void main()
 {
     // Couleur finale du pixel
-    gl_FragColor  = vec4(1.0, 1.0, 1.0, texture2D(texture, vTexCoord0).a) * color;
+    gl_FragColor  = texture2D(texture, vTexCoord0) * color;
     
-    //gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    //gl_FragColor  = vec4(1.0, 1.0, 1.0, texture2D(texture, vTexCoord0).a) * color;
     
     //gl_FragColor = color;
 }

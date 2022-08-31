@@ -88,9 +88,9 @@ typedef struct slWindow slWindow;
 //#include <slShadow.h>
 //#include <slButton.h>
 #include <slScene.h>
+#include <Enemy.h>
 #include <Player.h>
 #include <Weapon.h>
-#include <Enemy.h>
 
 // SL --------------------------------------------------------
 int SL_init();

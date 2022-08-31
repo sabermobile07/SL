@@ -7,6 +7,7 @@ struct Player
 	slVector* weapons;
 	float level;
 	float dt;
+	bool life;
 };
 
 Player* Player_init()
@@ -17,6 +18,7 @@ Player* Player_init()
 	me->weapons = slVector_init();
 	me->level = 1.f;
 	me->dt = 0.f;
+	me->life = true;
 
 	return me;
 }
@@ -46,8 +48,7 @@ void Player_update(Player* me, float dt)
     {
         vec3 pos, scale;
         slObj_getPos(me->obj, pos);
-        tmp = Weapon_init(pos);
-        slVector_push(me->weapons, tmp);
+        slVector_push(me->weapons, Weapon_init(pos, 1.f)); // chage 1 to power in magasin
         me->dt = 0.f;
     }
 }
@@ -70,4 +71,49 @@ void Player_draw(Player* me, slScene* scene)
         Weapon* w = slVector_get(me->weapons, i);
         Weapon_draw(w, scene, me->shader, false);
     }
+}
+
+bool Player_doCollision(Player* me, Enemy* enemy)
+{
+    bool ret = false;
+    
+    slObj* o = Enemy_getObj(enemy);
+    if(slObj_testCollision(me->obj, o))
+    {
+        ret = true;
+    }
+    else
+    {
+        size_t t = slVector_getTotal(me->weapons);
+        for(size_t i=0; i<t; i++)
+        {
+            Weapon* w = slVector_get(me->weapons, i);
+            if(Weapon_doCollision(w, enemy))
+            {
+                slVector_delete(me->weapons, i);
+            }
+        }
+    }
+    
+    return ret;
+}
+
+bool Player_doCollisionV(Player* me, EnemyV* enemyV)
+{
+    bool ret = false;
+    for(size_t i=0; i<EnemyV_getTotal(enemyV); i++)
+    {
+        Enemy* e = EnemyV_get(enemyV, i);
+        if(Player_doCollision(me, e))
+        {
+            ret = true;
+            return ret;
+        }
+    }
+    return ret;
+}
+
+bool Player_getLife(Player* me)
+{
+    return me->life;
 }
